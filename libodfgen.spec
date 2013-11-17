@@ -5,16 +5,17 @@
 Summary:	Library to generate ODF documents from libwpd and libwpg API calls
 Summary(pl.UTF-8):	Biblioteka do generowania dokumentów ODF z wywołań API libwpd i libwpg
 Name:		libodfgen
-Version:	0.0.2
+Version:	0.0.3
 Release:	1
 License:	MPL v2.0 or LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libwpd/%{name}-%{version}.tar.xz
-# Source0-md5:	b2fc76996a2a4e2aba32c9be18fb903c
+# Source0-md5:	d21175c7f4ba4154c2b5cada911851df
 URL:		http://libwpd.sourceforge.net/
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	boost-devel
+BuildRequires:	libetonyek-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libwpd-devel >= 0.9
@@ -38,6 +39,7 @@ Summary:	Header files for libodfgen library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libodfgen
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libetonyek-devel
 Requires:	libstdc++-devel
 Requires:	libwpd-devel >= 0.9
 Requires:	libwpg-devel >= 0.2
@@ -60,6 +62,17 @@ Static libodfgen library.
 %description static -l pl.UTF-8
 Statyczna biblioteka libodfgen.
 
+%package apidocs
+Summary:	libodfgen API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki libodfgen
+Group:		Documentation
+
+%description apidocs
+libodfgen API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki libodfgen.
+
 %prep
 %setup -q
 
@@ -80,8 +93,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libodfgen-*.la
-
+# packaged as %doc in -apidocs
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/libodfgen
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -105,3 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libodfgen-0.0.a
 %endif
+
+%files apidocs
+%defattr(644,root,root,755)
+%doc docs/doxygen/html/*
