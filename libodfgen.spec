@@ -5,12 +5,12 @@
 Summary:	Library to generate ODF documents from libwpd and libwpg API calls
 Summary(pl.UTF-8):	Biblioteka do generowania dokumentów ODF z wywołań API libwpd i libwpg
 Name:		libodfgen
-Version:	0.0.3
+Version:	0.0.4
 Release:	1
 License:	MPL v2.0 or LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libwpd/%{name}-%{version}.tar.xz
-# Source0-md5:	d21175c7f4ba4154c2b5cada911851df
+# Source0-md5:	e41ac9a624d528c92fa465de3c46dc59
 URL:		http://libwpd.sourceforge.net/
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
