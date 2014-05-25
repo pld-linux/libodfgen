@@ -5,26 +5,21 @@
 Summary:	Library to generate ODF documents from libwpd and libwpg API calls
 Summary(pl.UTF-8):	Biblioteka do generowania dokumentów ODF z wywołań API libwpd i libwpg
 Name:		libodfgen
-Version:	0.0.4
+Version:	0.1.0
 Release:	1
 License:	MPL v2.0 or LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libwpd/%{name}-%{version}.tar.xz
-# Source0-md5:	e41ac9a624d528c92fa465de3c46dc59
+# Source0-md5:	f0f35d5f5a93058ef339fcb37aa46a08
 URL:		http://libwpd.sourceforge.net/
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	boost-devel
-BuildRequires:	libetonyek-devel
-BuildRequires:	libstdc++-devel
+BuildRequires:	librevenge-devel >= 0.0
+BuildRequires:	libstdc++-devel >= 6:4.3
 BuildRequires:	libtool >= 2:2
-BuildRequires:	libwpd-devel >= 0.9
-BuildRequires:	libwpg-devel >= 0.2
 BuildRequires:	pkgconfig >= 1:0.20
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	libwpd >= 0.9
-Requires:	libwpg >= 0.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,10 +34,8 @@ Summary:	Header files for libodfgen library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libodfgen
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libetonyek-devel
+Requires:	librevenge-devel >= 0.0
 Requires:	libstdc++-devel
-Requires:	libwpd-devel >= 0.9
-Requires:	libwpg-devel >= 0.2
 
 %description devel
 Header files for libodfgen library.
@@ -82,9 +75,12 @@ Dokumentacja API biblioteki libodfgen.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# -stdc++11 for std::shared_ptr
+CXXFLAGS="%{rpmcxxflags} -std=c++11"
 %configure \
 	%{?with_static_libs:--enable-static} \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--with-sharedptr=c++11
 %{__make}
 
 %install
@@ -97,6 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libodfgen-*.la
 # packaged as %doc in -apidocs
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/libodfgen
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -105,20 +102,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README
-%attr(755,root,root) %{_libdir}/libodfgen-0.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libodfgen-0.0.so.0
+%doc AUTHORS ChangeLog NEWS README
+%attr(755,root,root) %{_libdir}/libodfgen-0.1.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libodfgen-0.1.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libodfgen-0.0.so
-%{_includedir}/libodfgen-0.0
-%{_pkgconfigdir}/libodfgen-0.0.pc
+%attr(755,root,root) %{_libdir}/libodfgen-0.1.so
+%{_includedir}/libodfgen-0.1
+%{_pkgconfigdir}/libodfgen-0.1.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libodfgen-0.0.a
+%{_libdir}/libodfgen-0.1.a
 %endif
 
 %files apidocs
