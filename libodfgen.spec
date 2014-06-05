@@ -2,15 +2,15 @@
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
-Summary:	Library to generate ODF documents from libwpd and libwpg API calls
-Summary(pl.UTF-8):	Biblioteka do generowania dokumentów ODF z wywołań API libwpd i libwpg
+Summary:	Library to generate ODF documents from librevenge API calls
+Summary(pl.UTF-8):	Biblioteka do generowania dokumentów ODF z wywołań API librevenge
 Name:		libodfgen
-Version:	0.1.0
+Version:	0.1.1
 Release:	1
 License:	MPL v2.0 or LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libwpd/%{name}-%{version}.tar.xz
-# Source0-md5:	f0f35d5f5a93058ef339fcb37aa46a08
+# Source0-md5:	cedabe838a41f763ef292f16fb618baf
 URL:		http://libwpd.sourceforge.net/
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
@@ -23,11 +23,10 @@ BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Library to generate ODF documents from libwpd and libwpg API calls.
+Library to generate ODF documents from librevenge API calls.
 
 %description -l pl.UTF-8
-Biblioteka do generowania dokumentów ODF z wywołań API libwpd i
-libwpg.
+Biblioteka do generowania dokumentów ODF z wywołań API librevenge.
 
 %package devel
 Summary:	Header files for libodfgen library
