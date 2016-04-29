@@ -1,12 +1,12 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
-#
+
 Summary:	Library to generate ODF documents from librevenge API calls
 Summary(pl.UTF-8):	Biblioteka do generowania dokumentów ODF z wywołań API librevenge
 Name:		libodfgen
 Version:	0.1.6
-Release:	1
+Release:	2
 License:	MPL v2.0 or LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libwpd/%{name}-%{version}.tar.xz
@@ -58,6 +58,9 @@ Statyczna biblioteka libodfgen.
 Summary:	libodfgen API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libodfgen
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 libodfgen API documentation.
