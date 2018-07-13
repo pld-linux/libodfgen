@@ -5,12 +5,12 @@
 Summary:	Library to generate ODF documents from librevenge API calls
 Summary(pl.UTF-8):	Biblioteka do generowania dokumentów ODF z wywołań API librevenge
 Name:		libodfgen
-Version:	0.1.6
-Release:	2
+Version:	0.1.7
+Release:	1
 License:	MPL v2.0 or LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libwpd/%{name}-%{version}.tar.xz
-# Source0-md5:	731fd5e5513c55ed64458a0a8c33a830
+# Source0-md5:	ec7ce6c69aac83f8a9e6280d919b3cad
 URL:		http://libwpd.sourceforge.net/
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
@@ -79,8 +79,8 @@ Dokumentacja API biblioteki libodfgen.
 %{__automake}
 %configure \
 	%{?with_static_libs:--enable-static} \
-	--disable-silent-rules \
-	--with-sharedptr=c++11
+	--disable-silent-rules
+
 %{__make}
 
 %install
