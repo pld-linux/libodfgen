@@ -58,9 +58,7 @@ Statyczna biblioteka libodfgen.
 Summary:	libodfgen API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libodfgen
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 libodfgen API documentation.
